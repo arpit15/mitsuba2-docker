@@ -15,9 +15,9 @@ ENV CXX=clang++-9
 RUN git clone --recursive https://github.com/mitsuba-renderer/mitsuba2.git /mitsuba2
 
 WORKDIR /mitsuba2
-RUN git checkout f5398352515eb912a31cedae6952c4a712af6a00 && git submodule update
+RUN git checkout fe2a1bd78e3916fccb8a3457e8b552e53f9c32d2 && git submodule update
 ADD mitsuba.conf.cpu mitsuba.conf 
-RUN mkdir build && cd build && cmake -GNinja .. && ninja
+RUN mkdir build && cd build && cmake -GNinja -DPYTHON_EXECUTABLE=$(which python) .. && ninja
 
 ENV PYTHONPATH=/mitsuba2/dist/python:/mitsuba2/build/dist/python:$PYTHONPATH
 ENV PATH=/mitsuba2/dist:/mitsuba2/build/dist:$PATH
