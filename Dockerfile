@@ -17,7 +17,7 @@ RUN git clone --recursive https://github.com/mitsuba-renderer/mitsuba2.git /mits
 WORKDIR /mitsuba2
 RUN git checkout fe2a1bd78e3916fccb8a3457e8b552e53f9c32d2 && git submodule update
 ADD mitsuba.conf.cpu mitsuba.conf 
-RUN mkdir build && cd build && cmake -GNinja -DPYTHON_EXECUTABLE=$(which python) .. && ninja
+RUN mkdir build && cd build && cmake -GNinja -DPYTHON_EXECUTABLE=$(which python3) .. && ninja
 
 ENV PYTHONPATH=/mitsuba2/dist/python:/mitsuba2/build/dist/python:$PYTHONPATH
 ENV PATH=/mitsuba2/dist:/mitsuba2/build/dist:$PATH
