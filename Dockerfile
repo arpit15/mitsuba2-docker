@@ -12,10 +12,10 @@ RUN apt update && apt install -y git \
 ENV CC=clang-9
 ENV CXX=clang++-9
 
-RUN git clone --recursive https://github.com/mitsuba-renderer/mitsuba2.git /mitsuba2
+RUN git clone --recursive https://github.com/arpit15/mitsuba2.git /mitsuba2
 
 WORKDIR /mitsuba2
-RUN git checkout fe2a1bd78e3916fccb8a3457e8b552e53f9c32d2 && git submodule update
+RUN git checkout 3fc2251d2df3ba0f21b461e1f8b5f32ad380dcc4 && git submodule update
 ADD mitsuba.conf.cpu mitsuba.conf 
 RUN mkdir build && cd build && cmake -GNinja -DPYTHON_EXECUTABLE=$(which python3) .. && ninja
 
